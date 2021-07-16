@@ -28,6 +28,7 @@ public interface ProductionBodyDao extends JpaRepository<ProductionBody, Long> {
 
 	// 查詢SN群組
 	List<ProductionBody> findAllByPbgidOrderByPbsnAsc(Integer pbgid);
+	
 
 	// 查詢一部分_Body
 	@Query(value = "SELECT b FROM ProductionBody b WHERE "//

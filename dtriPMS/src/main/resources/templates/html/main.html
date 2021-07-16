@@ -173,6 +173,9 @@ body {
                                 	main.allData['action'] = event['resp_content']['action'];
                                 	modify.modifyReturn();
                                     break;
+                                case "workstation_save":
+									//not Return()
+                                    break;    
                                 case "workstation":
 									main.allData = event['resp_content']; 
 									workstation.searchReturn();

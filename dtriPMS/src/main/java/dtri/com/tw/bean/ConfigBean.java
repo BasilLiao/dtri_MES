@@ -18,7 +18,7 @@ public class ConfigBean {
 	public String MESSAGE_ERROR;
 
 	private static final String show = "config.properties:";
-	private static String all_config;
+	//private static String all_config;
 
 	@PostConstruct
 	public void init() {

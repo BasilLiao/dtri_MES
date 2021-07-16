@@ -1,26 +1,6 @@
 package dtri.com.tw.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import dtri.com.tw.bean.PackageBean;
-import dtri.com.tw.db.entity.SystemGroup;
-import dtri.com.tw.db.entity.SystemPermission;
-import dtri.com.tw.db.entity.SystemUser;
-import dtri.com.tw.login.LoginUserDetails;
-import dtri.com.tw.service.PackageService;
-import dtri.com.tw.service.WorkstationItemService;
 
 @Controller
 public class WorkstationItemController {

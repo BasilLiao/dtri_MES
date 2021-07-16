@@ -63,30 +63,35 @@ public class ProductionConfigService {
 			JSONArray a_val = new JSONArray();
 
 			JSONArray a_val_body = new JSONArray();
-			ProductionBody body_one = bodyDao.findAllByPbid(0).get(0);
+			//ProductionBody body_one = bodyDao.findAllByPbid(0).get(0);
 			// sn關聯表
 			int j = 0;
-			Method method;
+			// Method method;
 			for (j = 0; j < 50; j++) {
-				String m_name = "getPbvalue" + String.format("%02d", j + 1);
+				//String m_name = "getPbvalue" + String.format("%02d", j + 1);
 				try {
-					method = body_one.getClass().getMethod(m_name);
-					String value = (String) method.invoke(body_one);
+					// method = body_one.getClass().getMethod(m_name);
+					// String value = (String) method.invoke(body_one);
 					String key = "pb_value" + String.format("%02d", j + 1);
 
 					a_val_body.put((new JSONObject()).put("value", key).put("key", key));
 
-				} catch (NoSuchMethodException e) {
-					e.printStackTrace();
-				} catch (SecurityException e) {
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					e.printStackTrace();
-				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
+				}
+//				catch (NoSuchMethodException e) {
+//					e.printStackTrace();
+//				} 
+				catch (SecurityException e) {
 					e.printStackTrace();
 				}
+//				catch (IllegalAccessException e) {
+//					e.printStackTrace();
+//				}
+				catch (IllegalArgumentException e) {
+					e.printStackTrace();
+				}
+//				catch (InvocationTargetException e) {
+//					e.printStackTrace();
+//				}
 			}
 			obj_m.put(FFS.h_m(FFM.Dno.D_S, FFM.Tag.SEL, FFM.Type.TEXT, "", "", FFM.Wri.W_N, "col-md-2", false, a_val_body, "pb_cell", "SN_系統欄位"));
 			obj_m.put(FFS.h_m(FFM.Dno.D_S, FFM.Tag.INP, FFM.Type.TEXT, "不設定請留空白", "", FFM.Wri.W_Y, "col-md-2", false, n_val, "pb_value", "SN_名稱定義"));

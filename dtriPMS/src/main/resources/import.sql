@@ -1,16 +1,28 @@
 --system_config
-INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (1, 1, 'FTP', 'IP', '10.1.89.72');
-INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (2, 1, 'FTP', 'PORT', '21');
-INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (3, 1, 'FTP', 'PATH', '/PMS_LOG/');
-INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (4, 1, 'FTP', 'PATH_BACKUP', '/PMS_LOG_BACKUP/');
-INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (5, 1, 'FTP', 'ACCOUNT', 'burn');
-INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (6, 1, 'FTP', 'PASSWORD', 'burn');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (1, 1, 'FTP_PLT', 'IP', '10.1.89.72');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (2, 1, 'FTP_PLT', 'PORT', '21');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (3, 1, 'FTP_PLT', 'PATH', '/PMS_LOG/');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (4, 1, 'FTP_PLT', 'PATH_BACKUP', '/PMS_LOG_BACKUP/');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (5, 1, 'FTP_PLT', 'ACCOUNT', 'burn');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (6, 1, 'FTP_PLT', 'PASSWORD', 'burn');
 INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (7, 2, 'E_MAIL_PROXY', '帳號', '123MES@gmail.com');
 INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (8, 2, 'E_MAIL_PROXY', '密碼', '123MES');
 INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (9, 2, 'E_MAIL_PROXY', '協定', 'POST');
-SELECT setval('public.system_config_seq', 9, true);
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (10, 3, 'FTP_DATA_BKUP', 'IP', '10.1.90.10');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (11, 3, 'FTP_DATA_BKUP', 'FTP_PORT', '21');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (12, 3, 'FTP_DATA_BKUP', 'ACCOUNT', 'pm_bom_server');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (13, 3, 'FTP_DATA_BKUP', 'PASSWORD', '2fIlHs');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (14, 3, 'FTP_DATA_BKUP', 'PATH', '/PM_BOM_DBBackup/');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (15, 4, 'DATA_BKUP', 'FOLDER_NAME', '\WebAppBackupDatabase\');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (16, 4, 'DATA_BKUP', 'FILE_NAME', 'dtrimes_backup');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (17, 4, 'DATA_BKUP', 'PG_DUMP', 'C:\Program Files\PostgreSQL\10\bin\pg_dump.exe');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (18, 4, 'DATA_BKUP', 'DB_NAME', 'postgres://dbadmin:12345@localhost/dtrimes');
+INSERT INTO system_config(sc_id, sc_g_id, sc_g_name, sc_name, sc_value)VALUES (19, 4, 'DATA_BKUP', 'DB_PORT', '5432');
+
+
+SELECT setval('public.system_config_seq', 19, true);
 DROP sequence IF EXISTS SYSTEM_CONFIG_G_SEQ CASCADE;
-create sequence SYSTEM_CONFIG_G_SEQ start with 3 increment by 1;
+create sequence SYSTEM_CONFIG_G_SEQ start with 5 increment by 1;
 
 --system_permission
 --無權限
@@ -26,17 +38,17 @@ INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission,
 INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (8, 2,0, '個人設定', '0001001101', 1102, '通用-帳號資料', 'own_user.basil');
 INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (9, 2,0, '個人設定', '0001000001', 1103, '通用-首頁', 'index.basil');
 --產品製程
-INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (10, 3,1, '產品製程', '0001001101', 1201, '設定-產品序號規則', 'production_sn.basil');
-INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (11, 3,1, '產品製程', '0001001101', 1202, '設定-料件SN類型', 'production_config.basil');
-INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (12, 3,0, '產品製程', '0001001101', 1203, '通用-製令單', 'production_header.basil');
-INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (13, 3,0, '產品製程', '0001001101', 1204, '通用-製令規格', 'production_records.basil');
-INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (14, 3,0, '產品製程', '0001001101', 1205, '通用-料件SN關聯', 'production_body.basil');
-INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (15, 3,0, '產品製程', '0001001111', 1206, '通用-製程及時進度', 'production_schedule.basil');
+INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (10, 3,1, '產品製程', '0001001101', 1201, '設定-產品SN-規則', 'production_sn.basil');
+INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (11, 3,1, '產品製程', '0001001101', 1202, '設定-料件SN-類型', 'production_config.basil');
+INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (12, 3,0, '產品製程', '0001001101', 1203, '通用-料件SN-關聯紀錄', 'production_body.basil');
+INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (13, 3,0, '產品製程', '0001001101', 1204, '通用-製令單', 'production_header.basil');
+INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (14, 3,0, '產品製程', '0001001101', 1205, '通用-製令單-規格', 'production_records.basil');
+INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (15, 3,0, '產品製程', '0001001111', 1206, '通用-製令單-即時進度', 'production_schedule.basil');
 --工作站
 --遺棄--INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (17, 4,1, '工作站', '0001001101', 1301, '設定-料件SN類型', 'workstation_item.basil');
-INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (16, 4,1, '工作站', '0001001101', 1302, '設定-工作站名稱', 'workstation_config.basil');
-INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (18, 4,1, '工作站', '0001001101', 1303, '設定-工作站綁定', 'workstation.basil');
-INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (19, 4,1, '工作站', '0001001101', 1304, '設定-製程管理', 'workstation_program.basil');
+INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (16, 4,1, '工作站', '0001001101', 1302, '設定-工作站-名稱設定', 'workstation_config.basil');
+INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (18, 4,1, '工作站', '0001001101', 1303, '設定-工作站-綁定-SN', 'workstation.basil');
+INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (19, 4,1, '工作站', '0001001101', 1304, '設定-工作站-流程管理', 'workstation_program.basil');
 INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (20, 4,0, '工作站', '0001001101', 1305, '通用-工作站', 'workstation_work.basil');
 INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (21, 4,0, '工作站', '0001001101', 1306, '通用-SN補單', 'workstation_snadd.basil');
 --工時績效
@@ -45,7 +57,7 @@ INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission,
 
 
 --維修區
-INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (24, 6,1, '產品維修', '0001001101', 1501, '設定-維修代碼', 'maintain_code.basil');
+INSERT INTO system_permission(sp_id, sp_g_id, sp_type, sp_g_name, sp_permission, sys_sort, sp_name, sp_control)VALUES (24, 6,1, '產品維修', '0001001101', 1501, '設定-不良代碼', 'maintain_code.basil');
 
 SELECT setval('public.system_permission_seq', 24, true);
 DROP sequence IF EXISTS SYSTEM_PERMISSION_G_SEQ CASCADE;
@@ -98,14 +110,14 @@ INSERT INTO system_user(su_id,su_account, su_e_name, su_email, su_name, su_passw
 SELECT setval('public.system_user_seq', 2, true);
 
 ----production_records
-INSERT INTO production_records(pr_id, pr_bom_id, pr_c_from,pr_c_name,pr_s_sn, pr_e_sn, pr_order_id, pr_p_model,pr_p_quantity,pr_p_ok_quantity,pr_b_item, pr_s_item) VALUES ('A44654-A654',  '91-363-G100001', '生產注意事項','MAYA(Isreal)', 'AAAB12111A001','AAAB12111A100','訂單編號(OP-2021042001)', 'DT363GL',3,1, '{"CPU":i600,"RAM":"4G"}','{"M/B 版本":"R5.6.P","ECN":"D6B"}');
-INSERT INTO production_records(pr_id, pr_bom_id, pr_c_from,pr_c_name,pr_s_sn, pr_e_sn, pr_order_id, pr_p_model,pr_p_quantity,pr_p_ok_quantity,pr_b_item, pr_s_item) VALUES ('A511-210204004',  '92-363-G100001', '生產注意事項','MAYA(Isreal)', 'AAAB12111A101','AAAB12111A200','訂單編號(OP-2021042002)', 'DT363GL',7,0, '{"CPU":i700,"RAM":"4G"}','{"M/B 版本":"R5.7.P","ECN":"D6B"}');
-INSERT INTO production_records(pr_id, pr_bom_id, pr_c_from,pr_c_name,pr_s_sn, pr_e_sn, pr_order_id, pr_p_model,pr_p_quantity,pr_p_ok_quantity,pr_b_item, pr_s_item) VALUES ('A513-123456799',  '93-363-G100001', '生產注意事項','MAYA(Isreal)', 'AAAB12111A201','AAAB12111A250','訂單編號(OP-2021042002)', 'DT363GL',7,0, '{"CPU":i800,"RAM":"4G"}','{"M/B 版本":"R5.8.P","ECN":"D6B"}');
+INSERT INTO production_records(pr_id, pr_bom_id, pr_c_from,pr_c_name,pr_s_sn, pr_e_sn, pr_order_id, pr_p_model,pr_p_quantity,pr_p_ok_quantity,pr_b_item, pr_s_item) VALUES ('A44654-A654',  '91-363-G100001', '測試-生產注意事項','MAYA(Isreal)', 'no_sn0000n000','no_sn0000n000','測試-訂單編號(OP-2021042001)', 'DT363GL',3,0, '{"CPU":i600,"RAM":"4G"}','{"M/B 版本":"R5.6.P","ECN":"D6B"}');
+INSERT INTO production_records(pr_id, pr_bom_id, pr_c_from,pr_c_name,pr_s_sn, pr_e_sn, pr_order_id, pr_p_model,pr_p_quantity,pr_p_ok_quantity,pr_b_item, pr_s_item) VALUES ('A511-210204004',  '92-363-G100001', '測試-生產注意事項','MAYA(Isreal)', 'no_sn0000n000','no_sn0000n000','測試-訂單編號(OP-2021042002)', 'DT363GL',7,0, '{"CPU":i700,"RAM":"4G"}','{"M/B 版本":"R5.7.P","ECN":"D6B"}');
+INSERT INTO production_records(pr_id, pr_bom_id, pr_c_from,pr_c_name,pr_s_sn, pr_e_sn, pr_order_id, pr_p_model,pr_p_quantity,pr_p_ok_quantity,pr_b_item, pr_s_item) VALUES ('A513-123456799',  '93-363-G100001', '測試-生產注意事項','MAYA(Isreal)', 'A13W1CC140300','A13W1CC140306','測試-訂單編號(OP-2021042002)', 'DT363GL',7,0, '{"CPU":i800,"RAM":"4G"}','{"M/B 版本":"R5.8.P","ECN":"D6B"}');
 
 --production_header
-INSERT INTO production_header(ph_id,ph_pb_g_id,ph_type, ph_pr_id, ph_schedule, ph_wp_id, sys_header, sys_ver) VALUES (1,2,'A511_no_sn', 'A44654-A654', '', 1, true, 0);
-INSERT INTO production_header(ph_id,ph_pb_g_id,ph_type, ph_pr_id, ph_schedule, ph_wp_id, sys_header, sys_ver) VALUES (2,3,'A511_no_sn', 'A511-210204004', '', 2, true, 0);
-INSERT INTO production_header(ph_id,ph_pb_g_id,ph_type, ph_pr_id, ph_schedule, ph_wp_id, sys_header, sys_ver) VALUES (3,3,'A511_no_sn', 'A513-123456799', '', 1, true, 0);
+INSERT INTO production_header(ph_id,ph_pb_g_id,ph_type, ph_pr_id, ph_schedule, ph_wp_id, sys_header, sys_ver) VALUES (1,1,'A511_no_sn', 'A44654-A654', '', 1, true, 0);
+INSERT INTO production_header(ph_id,ph_pb_g_id,ph_type, ph_pr_id, ph_schedule, ph_wp_id, sys_header, sys_ver) VALUES (2,1,'A511_no_sn', 'A511-210204004', '', 2, true, 0);
+INSERT INTO production_header(ph_id,ph_pb_g_id,ph_type, ph_pr_id, ph_schedule, ph_wp_id, sys_header, sys_ver) VALUES (3,3,'A511_has_sn', 'A513-123456799', '', 1, true, 0);
 SELECT setval('public.production_header_seq', 3, true);
 DROP sequence IF EXISTS PRODUCTION_HEADER_G_SEQ CASCADE;
 create sequence PRODUCTION_HEADER_G_SEQ start with 4 increment by 1;
@@ -114,17 +126,13 @@ create sequence PRODUCTION_HEADER_G_SEQ start with 4 increment by 1;
 INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_value01, pb_value02 ,pb_value03 ,pb_value04 ,pb_value05 ,pb_value06 ,pb_value07,pb_value08,pb_value09,pb_sn, sys_header,pb_w_name01,pb_w_name02,pb_w_name03,pb_w_name04,pb_w_name05,pb_w_name06,pb_w_name07,pb_w_name08) VALUES ( 0,0, 0,'MB(UUID)' ,'LAN1 MAC' ,'LAN2 MAC' ,'WIFI MAC' ,'NVRAM MAC','IMEI','ECN','EC','BIOS','', true,'PCB_processing','PCB_burnin','PCB_function_test','Assembly','Burnin','T1','T2','Package');
 INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule) VALUES ( 1,1, 0, 'no_sn' , false, '');
 
-INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 2,2, 0, '06QP32110Z391' , false, '{"1":{"name":"PCB_processing","type":"N"},"5":{"name":"PCB_function_test","type":"N"}}','主版號11');
-INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 3,2, 0, '06QP32110Z392' , false, '{"1":{"name":"PCB_processing","type":"N"},"5":{"name":"PCB_function_test","type":"N"}}','主版號12');
-INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 4,2, 0, '06QP32110Z393' , false, '{"1":{"name":"PCB_processing","type":"N"},"5":{"name":"PCB_function_test","type":"N"}}','主版號13');
-
-INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 5,3, 0, 'A13W1CC140300' , false, '{A站:N,B站:Y}','主版號21');
-INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 6,3, 0, 'A13W1CC140301' , false, '{A站:N,B站:Y}','主版號22');
-INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01,pb_l_text) VALUES ( 7,3, 0, 'A13W1CC140302' , false, '{A站:N,B站:Y}','主版號23','999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999');
-INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 8,3, 0, 'A13W1CC140303' , false, '{A站:N,B站:Y}','主版號24');
-INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 9,3, 0, 'A13W1CC140304' , false, '{A站:N,B站:Y}','主版號25');
-INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 10,3, 0, 'A13W1CC140305' , false, '{A站:N,B站:Y}','主版號26');
-INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 11,3, 0, 'A13W1CC140306' , false, '{A站:N,B站:Y}','主版號27');
+INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 5,3, 0, 'A13W1CC140300' , false, '{"1":{"name":"PCB_processing","type":"N"},"5":{"name":"PCB_function_test","type":"N"}}','主版號21');
+INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 6,3, 0, 'A13W1CC140301' , false, '{"1":{"name":"PCB_processing","type":"N"},"5":{"name":"PCB_function_test","type":"N"}}','主版號22');
+INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01,pb_l_text) VALUES ( 7,3, 0, 'A13W1CC140302' , false, '{"1":{"name":"PCB_processing","type":"N"},"5":{"name":"PCB_function_test","type":"N"}}','主版號23','999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999');
+INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 8,3, 0, 'A13W1CC140303' , false, '{"1":{"name":"PCB_processing","type":"N"},"5":{"name":"PCB_function_test","type":"N"}}','主版號24');
+INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 9,3, 0, 'A13W1CC140304' , false, '{"1":{"name":"PCB_processing","type":"N"},"5":{"name":"PCB_function_test","type":"N"}}','主版號25');
+INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 10,3, 0, 'A13W1CC140305' , false, '{"1":{"name":"PCB_processing","type":"N"},"5":{"name":"PCB_function_test","type":"N"}}','主版號26');
+INSERT INTO production_body(pb_id,pb_g_id, sys_ver, pb_sn, sys_header, pb_schedule,pb_value01) VALUES ( 11,3, 0, 'A13W1CC140306' , false, '{"1":{"name":"PCB_processing","type":"N"},"5":{"name":"PCB_function_test","type":"N"}}','主版號27');
 
 SELECT setval('public.production_body_seq', 11, true);
 DROP sequence IF EXISTS PRODUCTION_BODY_G_SEQ CASCADE;
@@ -159,12 +167,12 @@ DROP sequence IF EXISTS WORKSTATION_G_SEQ CASCADE;
 create sequence WORKSTATION_G_SEQ start with 3 increment by 1;
 
 --workstation_program
-INSERT INTO workstation_program(wp_id,wp_g_id,wp_w_g_id, wp_c_name, wp_name, sys_sort,sys_header) VALUES (1,1,0,'WP999', 'PCB+TEST站程序', 0,true);
-INSERT INTO workstation_program(wp_id,wp_g_id,wp_w_g_id, wp_c_name, wp_name, sys_sort,sys_header) VALUES (2,1,1,'WP999', 'PCB+TEST站程序', 1,false);
-INSERT INTO workstation_program(wp_id,wp_g_id,wp_w_g_id, wp_c_name, wp_name, sys_sort,sys_header) VALUES (3,1,2,'WP999', 'PCB+TEST站程序', 2,false);
+INSERT INTO workstation_program(wp_id,wp_g_id,wp_w_g_id, wp_c_name, wp_name, sys_sort,sys_header) VALUES (1,1,0,'WP999', '測試-PCB+TEST站程序', 0,true);
+INSERT INTO workstation_program(wp_id,wp_g_id,wp_w_g_id, wp_c_name, wp_name, sys_sort,sys_header) VALUES (2,1,1,'WP999', '測試-PCB+TEST站程序', 1,false);
+INSERT INTO workstation_program(wp_id,wp_g_id,wp_w_g_id, wp_c_name, wp_name, sys_sort,sys_header) VALUES (3,1,2,'WP999', '測試-PCB+TEST站程序', 2,false);
 
-INSERT INTO workstation_program(wp_id,wp_g_id,wp_w_g_id, wp_c_name, wp_name, sys_sort,sys_header) VALUES (4,2,0,'WP888', 'TEST站程序', 0,true);
-INSERT INTO workstation_program(wp_id,wp_g_id,wp_w_g_id, wp_c_name , wp_name, sys_sort,sys_header) VALUES (5,2,1,'WP888', 'TEST站程序', 1,false);
+INSERT INTO workstation_program(wp_id,wp_g_id,wp_w_g_id, wp_c_name, wp_name, sys_sort,sys_header) VALUES (4,2,0,'WP888', '測試-TEST站程序', 0,true);
+INSERT INTO workstation_program(wp_id,wp_g_id,wp_w_g_id, wp_c_name , wp_name, sys_sort,sys_header) VALUES (5,2,1,'WP888', '測試-TEST站程序', 1,false);
 SELECT setval('public.workstation_program_seq', 5, true);
 DROP sequence IF EXISTS WORKSTATION_PROGRAM_G_SEQ CASCADE;
 create sequence WORKSTATION_PROGRAM_G_SEQ start with 3 increment by 1;
