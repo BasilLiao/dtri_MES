@@ -110,7 +110,7 @@
 									<div id="barcode_BC003"></div>
 									<div id="BC003" class="btn btn-sm btn-light col-12 p-0 m-0 mt-1 barcode_action">
 										<div class="small font-weight-bold">
-											check(檢查)<br>[BC003]
+											check(檢查/刷新)<br>[BC003]
 										</div>
 									</div>
 								</div>
@@ -537,14 +537,17 @@
 											</div>
 										</div>
 										<hr>
-										<div id="barcode_sn_big_list" class="m-0 p-1  font-weight-bold" style="min-height: 200px;">
+										<div id="barcode_sn_big_list" class="m-0 p-0 pl-2 pr-2  font-weight-bold" style="min-height: 200px; width: 310px">
 											<div class="row m-0 barcode_sn_big_title">
-												<div class="">P/N:</div>
-												<div class="ml-2" id="barcode_cumulative_model_name" contenteditable="true">Product Model Number</div>
+												<div class="ml-1">P/N:</div>
+												<div class="ml-2" id="barcode_cumulative_model_name" contenteditable="true">Product Number</div>
+											</div>
+											<div class="row m-0" >
+												<div class="m-0 pl-4 p-2" contenteditable="true" style="width: 280px;height: 140px;">　</div>
 											</div>
 											<div class="row m-0">
-												<div class="mt-2 barcode_sn_big_title">S/N:</div>
-												<div class="ml-1 mt-1">
+												<div class="mt-1 ml-1 barcode_sn_big_title" style="height: 200px; ">S/N:</div>
+												<div class="ml-1 mt-2">
 													<div class="mt-1"></div>
 													<div class="mt-1">
 														<div id="barcode_sn_big_value"></div>
@@ -568,7 +571,7 @@
 												</div>
 											</div>
 											<div class="row m-0 barcode_sn_big_title">
-												<div class="">QTY:</div>
+												<div class="ml-1">QTY:</div>
 												<div class="ml-2 " id="barcode_sn_big_qty">1</div>
 											</div>
 										</div>
@@ -618,13 +621,13 @@
 											</div>
 										</div>
 										<hr>
-										<div id="barcode_sn_all_list" class="m-0 p-1  font-weight-bold" style="min-height: 200px;">
+										<div id="barcode_sn_all_list" class="m-0 p-1  font-weight-bold" style="min-height: 200px; width: 310px;">
 											<div class="row m-0 barcode_sn_big_title">
-												<div>P/N:</div>
-												<div class="ml-2" id="barcode_cumulative_model_name" contenteditable="true">Product Model Number</div>
+												<div class="pl-2">P/N:</div>
+												<div class="ml-2" id="barcode_cumulative_model_name" contenteditable="true">Product Number</div>
 											</div>
 											<div class="row m-0">
-												<div class="mt-2 barcode_sn_big_title">S/N:</div>
+												<div class="pl-2 mt-2 barcode_sn_big_title">S/N:</div>
 												<div class="ml-1 mt-1">
 													<div class="mt-1" id="barcode_sn_list_ex">
 														<div id="barcode_sn_list_0"></div>
@@ -633,7 +636,7 @@
 												</div>
 											</div>
 											<div class="row m-0 barcode_sn_big_title">
-												<div class="">QTY:</div>
+												<div class="pl-2">QTY:</div>
 												<div class="ml-2" id="barcode_sn_qty">0</div>
 											</div>
 										</div>
@@ -1022,7 +1025,7 @@
 							
 							
 							var print_all = '<html><head>'+css+'</head>'+
-							'<body class="row justify-content-center" style="font-size: 21px;line-height:25px;" onload="print()">'+
+							'<body class="row justify-content-center" style="font-size: 20px;line-height:25px;" onload="print()">'+
 							'<div>'+print_all+'</div></body></html>';
 							newWin.document.write(print_all);
 							newWin.document.close();
