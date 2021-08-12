@@ -173,6 +173,7 @@
 			},
 			//轉跳-單元
 			turnMenu(event){
+				main.loading(true);
 				console.log("turnMenu:"+event.currentTarget.attributes.url.value);
 				var s_url = event.currentTarget.attributes.url.value;
 				var	s_type = "POST";

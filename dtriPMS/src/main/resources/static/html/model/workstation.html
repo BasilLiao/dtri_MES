@@ -724,6 +724,7 @@
 			    $("#m_order").val(event.currentTarget.id);
 				$("#send_command_btn" ).trigger( "click" );
 			});
+			 main.loading(false);
 
 		},
 		//可呼叫方法
@@ -1221,6 +1222,7 @@
             },
 			//檢查
 			sendCheck() {
+            	 main.loading(true);
 				console.log("sendCheck");	
 				 var search = {};
 				search['w_hours'] = $('#w_focus_0').val();
@@ -1251,6 +1253,7 @@
 	            main.ajaxSend(s_url, s_type, s_data);
 			},
 			 searchReturn() {
+				 main.loading(false);
                 //console.log("searchReturn");
                 this.barcode_check = true;
                 console.log(main.allData.body.search);

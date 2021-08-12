@@ -30,6 +30,8 @@ body {
 	<div id="header_t_all"></div>
 	<!-- 選單(nav) -->
 	<div id="nav_t_all"></div>
+	<!-- 讀取中(nav_loading) -->
+	<div id="nav_t_loading"></div>
 	<!-- 錯誤訊息(alert) -->
 	<div id="alert_t_all"></div>
 	<!-- 本體(body) -->
@@ -99,6 +101,10 @@ body {
 			});
 			//模板-網站宣告
 			$("#footer_t_all").load("./html/footer/footer_index.html");
+			
+			//模板-讀取中...
+			$("#nav_t_loading").load("./html/nav/nav_loading.html");
+			
 			
 			//啟動計時
 			//this.timeOut(true);
@@ -267,9 +273,9 @@ body {
 			//程序運作中~
 			loading : function(open) {
 				if (open) {
-					$("#loading").removeClass("d-none");
+					$("#nav_loading").removeClass("d-none");
 				} else {
-					$("#loading").addClass("d-none");
+					$("#nav_loading").addClass("d-none");
 				}
 			},
 		},

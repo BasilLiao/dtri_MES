@@ -70,7 +70,7 @@ public class PackageService {
 		data.put("cell_refresh", object.getCell_refresh());
 		data.put("cell_g_modify", object.getCell_g_modify());
 		
-		System.out.println(data.toString());
+		//System.out.println(data.toString());
 		return new JSONObject().put("resp_content", data).toString();
 	}
 

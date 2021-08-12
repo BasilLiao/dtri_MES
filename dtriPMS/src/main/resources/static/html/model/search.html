@@ -342,6 +342,7 @@
                     $(".example_select_one").addClass("d-none");
                     $(".search_example_input").addClass("d-none");
                     $(".search_example_selsect").addClass("d-none");
+                    main.loading(false);
                 }
                 
                 //時間格式
@@ -501,6 +502,7 @@
             },
             //search
             searchSend() {
+            	main.loading(true);
                 //查詢
                 //Ex:body:{search:{b:b,c:c}}
                 var search = {};
@@ -533,6 +535,7 @@
                 main.ajaxSend(s_url, s_type, s_data);
             },
             searchReturn() {
+            	main.loading(false);
                 console.log("searchReturn");
                 this.setDataList(main.allData.body.search,main.allData.body_type);
                 if(main.allData.cell_refresh!=null){
